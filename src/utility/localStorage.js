@@ -19,4 +19,4 @@ const addToLocalStorage = id =>{
     saveSubjectToLocalStorage(subject);
 }
 
-export {addToLocalStorage};
+export {addToLocalStorage,getStoredSubject};

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addToLocalStorage } from "../utility/localStorage";
+import { addToLocalStorage, getStoredSubject } from "../utility/localStorage";
 
 const Home = () => {
     const [subjects, setSubjects] = useState([]);
@@ -9,7 +9,21 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setSubjects(data));
     })
-
+    useEffect(() => {
+        if(subjects.length){
+            const getStored = getStoredSubject();
+            console.log(getStored);
+            const savedSubject = [];
+            for(const id of getStored){
+                const sub = subjects.map(subject => subject._id === id);
+                if(sub){    
+                    savedSubject.push(sub)
+                }
+            }
+            setCart(savedSubject);
+        }
+       
+    },[subjects]);
     const handleAddToSubject = subject =>{
         console.log(subject);
         const newCart = [...cart, subject];
