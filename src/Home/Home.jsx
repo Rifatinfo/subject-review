@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { addToLocalStorage, getStoredSubject } from "../utility/localStorage";
+import AddToSubject from "../Components/addToSubject";
 
 const Home = () => {
     const [subjects, setSubjects] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         if(subjects.length){
             const getStored = getStoredSubject();
-            console.log(getStored);
+            // console.log(getStored);
             const savedSubject = [];
             for(const id of getStored){
                 const sub = subjects.map(subject => subject._id === id);
@@ -33,7 +34,8 @@ const Home = () => {
     return (
         <div>
             <h1>{subjects.length}</h1>
-            <h1>Added Subject : <span className="font-bold text-red-700">{cart.length}</span></h1>
+            
+            <AddToSubject cart={cart}></AddToSubject>
             <body className="mt-32 flex justify-center items-center">
                 <div id="main-container" className="p-4">
                     <div id="table-container" className="overflow-x-auto">
