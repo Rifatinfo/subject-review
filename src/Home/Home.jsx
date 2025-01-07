@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
+import { addToLocalStorage } from "../utility/localStorage";
 
 const Home = () => {
     const [subjects, setSubjects] = useState([]);
-
+    const [cart, setCart] = useState([]);
     useEffect(() => {
         fetch('Data.json')
             .then(res => res.json())
             .then(data => setSubjects(data));
     })
+
+    const handleAddToSubject = subject =>{
+        console.log(subject);
+        const newCart = [...cart, subject];
+        setCart(newCart);
+        addToLocalStorage(subject._id);
+    }
     return (
         <div>
             <h1>{subjects.length}</h1>
+            <h1>Added Subject : <span className="font-bold text-red-700">{cart.length}</span></h1>
             <body className="mt-32 flex justify-center items-center">
                 <div id="main-container" className="p-4">
                     <div id="table-container" className="overflow-x-auto">
@@ -40,7 +49,7 @@ const Home = () => {
                                                     <img className="w-5 h-5" src={subject.taken_right} alt="Checked" />
                                                 </div>
                                                 <div className="swap-off block peer-checked:hidden">
-                                                    <img
+                                                    <img onClick={() => handleAddToSubject(subject)}
                                                         className="w-4 h-4"
                                                         src={subject.taken_close}
                                                         alt="Unchecked"
