@@ -1,0 +1,16 @@
+[
+    {
+      "_id": "1",
+      "subject_name": "Mathematics",
+      "course_id": "MATH101",
+      "rightImage": "https://example.com/images/right-icon.png",
+      "crossImage": "https://example.com/images/cross-icon.png",
+      "section": "A",
+      "day": ["Sun", "Tue"],
+      "time": ["4:10PM - 5:30PM", "4:10PM - 5:30PM"],
+      "room": ["PA210", "PB107"]
+    }
+  ]
+
+
+ 
